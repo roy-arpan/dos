@@ -30,8 +30,8 @@ W=pw*v         # laser pulse width in space
 M=1000        # number of reflector for any instant
 L=10000        #length of the fibre
 T=2*(L/v)      # time required to travel the fibre length
-p=int(T//pow(10,-7))
-t=numpy.linspace(pw,T,p)  #different time position for signal accusition
+p=int(T//(2*pow(10,-7)))
+t=numpy.linspace(pw,(T/2),p)  #different time position for signal accusition
 alpha=0.17*pow(10,-3)  # in dB/m
 l=len(t)          # different time position for signal accusition
 z=numpy.linspace(1,11,10)
@@ -54,7 +54,7 @@ for i in range(0,l,1):
     s[i]=sum(k)
     Eb[i]=E0*(numpy.exp(-2*alpha*zavg[i]))*(numpy.exp((wa*2*t[i])*1j))*s[i]
 
-x=numpy.square((Eb))
+x=numpy.square(abs(Eb))
 plt.plot(z,x)
 plt.show()
 
